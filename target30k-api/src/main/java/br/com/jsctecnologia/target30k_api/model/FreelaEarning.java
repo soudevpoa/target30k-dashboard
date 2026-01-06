@@ -6,6 +6,8 @@ import lombok.Data;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+// FreelaEarning.java
+
 @Entity
 @Data
 public class FreelaEarning {
@@ -15,7 +17,10 @@ public class FreelaEarning {
     private Long id;
 
     private String description;
-    @Column(name = "valor")
+
+    // Usamos aspas duplas escapadas para o H2 aceitar a palavra reservada
+    @Column(name = "valor_ganho")
     private BigDecimal value;
+
     private LocalDate date;
 }

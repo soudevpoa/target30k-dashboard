@@ -5,7 +5,7 @@ const api = axios.create({
 });
 
 export const earningService = {
-  getAll: () => api.get('/'),
-  create: (data) => api.post('/', data),
+  getAll: () => api.get(''),
+  create: (data) => api.post('', data),
   delete: (id) => api.delete(`/${id}`),
 };

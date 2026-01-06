@@ -1,27 +1,32 @@
 package br.com.jsctecnologia.target30k_api.controller;
 
-import br.com.jsctecnologia.target30k_api.model.FreelaEarning;
-import br.com.jsctecnologia.target30k_api.repository.FreelaEarningRepository;
+import br.com.jsctecnologia.target30k_api.dto.EarningRequestDTO;
+import br.com.jsctecnologia.target30k_api.dto.EarningResponseDTO;
+import br.com.jsctecnologia.target30k_api.service.EarningService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/earnings")
-@CrossOrigin(origins = "*") // Isso aqui é vital para o React conseguir acessar a API depois
+@CrossOrigin(origins = "*")
 public class FreelaEarningController {
 
     @Autowired
-    private FreelaEarningRepository repository;
+    private EarningService service;
 
     @GetMapping
-    public List<FreelaEarning> getAll() {
-        return repository.findAll();
+    public List<EarningResponseDTO> listarTodos() {
+        return service.findAll();
     }
 
     @PostMapping
-    public FreelaEarning create(@RequestBody FreelaEarning earning) {
-        return repository.save(earning);
+    public EarningResponseDTO salvar(@RequestBody EarningRequestDTO dto) {
+        return service.save(dto);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deletar(@PathVariable Long id) {
+        service.delete(id);
     }
 }

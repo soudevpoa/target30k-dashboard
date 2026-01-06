@@ -46,4 +46,16 @@ public class EarningService {
     public void delete(Long id) {
         repository.deleteById(id);
     }
+
+    public List<EarningResponseDTO> getEarningsByMonth(int month, int year) {
+        return repository.findByMonthAndYear(month, year).stream()
+                .map(earning -> new EarningResponseDTO(
+                        earning.getId(),
+                        earning.getDescription(),
+                        earning.getValue(),
+                        earning.getDate()))
+                .collect(Collectors.toList());
+    }
+
 }
+

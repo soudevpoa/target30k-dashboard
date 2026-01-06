@@ -8,4 +8,5 @@ public record EarningResponseDTO(
         String description,
         BigDecimal value,
         LocalDate date
-) {}
+) {public EarningResponseDTO(br.com.jsctecnologia.target30k_api.model.FreelaEarning entity) {
+    this(entity.getId(), entity.getDescription(), entity.getValue(), entity.getDate());}}
